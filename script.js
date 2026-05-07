@@ -9,7 +9,48 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             loader.style.display = 'none';
         }, 500);
-    }, 1500);
+    }, 1000);
+
+    /* ==========================================================================
+       Stats Counter Animation
+       ========================================================================== */
+    const statNumbers = document.querySelectorAll('.stat-number');
+    let statsAnimated = false;
+
+    const animateStats = () => {
+        statNumbers.forEach(stat => {
+            const target = parseInt(stat.getAttribute('data-target'));
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    stat.textContent = Math.floor(current);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    stat.textContent = target + '+';
+                }
+            };
+
+            updateCounter();
+        });
+    };
+
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !statsAnimated) {
+                animateStats();
+                statsAnimated = true;
+            }
+        });
+    }, { threshold: 0.5 });
+
+    const heroStats = document.querySelector('.hero-stats');
+    if (heroStats) {
+        statsObserver.observe(heroStats);
+    }
 
     /* ==========================================================================
        Sticky Navbar & Active State
@@ -100,8 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ==========================================================================
        Countdown Timer
        ========================================================================== */
-    // Set seminar date to October 24, 2026
-    const countDate = new Date('Oct 24, 2026 09:00:00').getTime();
+    // Set seminar date to June 21, 2026
+    const countDate = new Date('Jun 21, 2026 09:00:00').getTime();
 
     const countdown = () => {
         const now = new Date().getTime();
