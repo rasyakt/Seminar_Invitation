@@ -74,25 +74,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }));
 
     /* ==========================================================================
-       Scroll Reveal Animation
+       Modern Scroll Reveal (Intersection Observer)
        ========================================================================== */
     const reveals = document.querySelectorAll('.reveal');
 
-    const revealOnScroll = () => {
-        const windowHeight = window.innerHeight;
-        const elementVisible = 100;
-
-        reveals.forEach(reveal => {
-            const elementTop = reveal.getBoundingClientRect().top;
-            if (elementTop < windowHeight - elementVisible) {
-                reveal.classList.add('active');
-            }
-        });
+    const revealOptions = {
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px"
     };
 
-    window.addEventListener('scroll', revealOnScroll);
-    // Trigger once on load
-    setTimeout(revealOnScroll, 1000);
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                // Optional: stop observing after reveal for performance
+                // observer.unobserve(entry.target);
+            }
+        });
+    }, revealOptions);
+
+    reveals.forEach(reveal => {
+        revealObserver.observe(reveal);
+    });
 
     /* ==========================================================================
        Countdown Timer

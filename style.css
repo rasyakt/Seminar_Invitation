@@ -180,8 +180,27 @@ img {
 
 .reveal.active {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) translateX(0) scale(1);
 }
+
+.reveal.left {
+    transform: translateX(-50px);
+}
+
+.reveal.right {
+    transform: translateX(50px);
+}
+
+.reveal.zoom {
+    transform: scale(0.9);
+}
+
+/* Staggered Delays */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
 
 @keyframes float {
     0% { transform: translate(0, 0) scale(1); }
@@ -1155,28 +1174,45 @@ header.scrolled {
     .nav-links {
         position: fixed;
         top: 0; left: -100%;
-        width: 80%; height: 100vh;
-        background: rgba(10, 11, 16, 0.95);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
+        width: 85%; height: 100vh;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         flex-direction: column;
         justify-content: center;
-        transition: 0.5s ease;
-        border-right: 1px solid var(--glass-border);
+        transition: 0.6s cubic-bezier(0.5, 0, 0, 1);
+        border-right: 1px solid rgba(0,0,0,0.05);
+        box-shadow: 20px 0 50px rgba(0,0,0,0.1);
+        padding: 40px;
     }
     
     .nav-links.active { left: 0; }
     
-    .hero { padding-top: 100px; }
-    .hero h1 { font-size: 2.8rem; }
+    .nav-links li {
+        width: 100%;
+        margin-bottom: 20px;
+    }
     
-    .countdown { flex-wrap: wrap; }
-    .time-box { min-width: 100px; padding: 15px; }
-    .time-box span { font-size: 2rem; }
+    .nav-link {
+        font-size: 1.2rem;
+        display: block;
+        width: 100%;
+    }
+    
+    .hero { padding-top: 100px; padding-bottom: 80px; }
+    .hero h1 { font-size: 2.5rem; }
+    
+    .countdown { gap: 10px; }
+    .time-box { min-width: 80px; padding: 12px; }
+    .time-box span { font-size: 1.5rem; }
     
     .timeline::before { left: 15px; }
     .timeline-dot { left: 8px; }
     .timeline-item { padding-left: 45px; }
+    
+    /* Subtle animations for mobile */
+    .reveal.left { transform: translateX(-30px); }
+    .reveal.right { transform: translateX(30px); }
     
     .rsvp-wrapper { padding: 30px 20px; }
     .footer-content { grid-template-columns: 1fr; gap: 30px; }
