@@ -638,6 +638,40 @@ header.scrolled {
     overflow: hidden;
 }
 
+.particle-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.floating-icons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.floating-icon {
+    position: absolute;
+    font-size: 2rem;
+    color: var(--color-primary);
+    opacity: 0.2;
+    animation: float 6s ease-in-out infinite;
+    animation-delay: calc(var(--i) * -1s);
+}
+
+[data-theme="dark"] .floating-icon {
+    color: var(--color-primary);
+    opacity: 0.15;
+}
+
 /* Hero Stats Counter */
 .hero-stats {
     display: flex;
@@ -2167,4 +2201,24 @@ header.scrolled {
 .close-modal:hover {
     color: var(--color-primary);
     transform: scale(1.1);
+}
+
+/* ==========================================================================
+   Cursor Glow & Music Toggle Effects
+   ========================================================================== */
+.cursor-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(91, 124, 250, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease, background 0.3s ease;
+    mix-blend-mode: screen;
+}
+
+[data-theme="dark"] .cursor-glow {
+    background: radial-gradient(circle, rgba(107, 140, 255, 0.2) 0%, transparent 70%);
 }

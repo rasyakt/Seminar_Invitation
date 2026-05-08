@@ -65,6 +65,19 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <canvas id="particleCanvas" class="particle-canvas"></canvas>
+        <div class="cursor-glow" id="heroGlow"></div>
+
+        <!-- Floating Tech Icons -->
+        <div class="floating-icons" aria-hidden="true">
+            <i class="fab fa-android floating-icon" style="--i:1; top:15%; left:8%"></i>
+            <i class="fab fa-apple floating-icon" style="--i:2; top:70%; left:5%"></i>
+            <i class="fab fa-react floating-icon" style="--i:3; top:20%; right:7%"></i>
+            <i class="fab fa-flutter floating-icon" style="--i:4; top:65%; right:6%"></i>
+            <i class="fas fa-mobile-alt floating-icon" style="--i:5; top:40%; left:3%"></i>
+            <i class="fas fa-code floating-icon" style="--i:6; top:45%; right:3%"></i>
+        </div>
+
         <div class="bg-orbs">
             <div class="orb orb-1"></div>
             <div class="orb orb-2"></div>
@@ -545,11 +558,14 @@
         <i class="fas fa-arrow-up"></i>
     </a>
 
+
     <!-- Dark Mode Toggle -->
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
         <i class="fas fa-sun theme-toggle-icon sun"></i>
         <i class="fas fa-moon theme-toggle-icon moon"></i>
     </button>
+
+    <!-- Custom JavaScript -->
 
     <!-- Custom JavaScript -->
     <script src="script.js"></script>
