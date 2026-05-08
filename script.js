@@ -325,4 +325,70 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    /* ==========================================================================
+       Gallery Lightbox Implementation
+       ========================================================================== */
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    // Create modal element
+    const modal = document.createElement('div');
+    modal.classList.add('gallery-modal');
+    modal.innerHTML = `
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImg">
+    `;
+    document.body.appendChild(modal);
+
+    const modalImg = document.getElementById('modalImg');
+    const closeModal = document.querySelector('.close-modal');
+
+    galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const imgSrc = item.querySelector('img').src;
+            modal.classList.add('active');
+            modalImg.src = imgSrc;
+            document.body.style.overflow = 'hidden'; // Prevent scroll
+        });
+    });
+
+    const closeGalleryModal = () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
+    closeModal.addEventListener('click', closeGalleryModal);
+    
+    // Close on click outside image
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeGalleryModal();
+        }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeGalleryModal();
+        }
+    });
+
+    /* ==========================================================================
+       RSVP Conditional Fields
+       ========================================================================== */
+    const attendanceSelect = document.getElementById('attendance');
+    const reasonGroup = document.getElementById('reasonGroup');
+    const reasonInput = document.getElementById('reason');
+
+    if (attendanceSelect && reasonGroup) {
+        attendanceSelect.addEventListener('change', function() {
+            if (this.value === 'not-attending') {
+                reasonGroup.style.display = 'block';
+                reasonInput.setAttribute('required', 'required');
+            } else {
+                reasonGroup.style.display = 'none';
+                reasonInput.removeAttribute('required');
+            }
+        });
+    }
+
 });

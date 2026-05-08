@@ -349,12 +349,12 @@
                 <h2>Past Events Gallery</h2>
             </div>
             <div class="gallery-masonry">
-                <div class="gallery-item reveal"><img src="https://picsum.photos/600/400?random=1" alt="Seminar view"></div>
-                <div class="gallery-item reveal"><img src="https://picsum.photos/400/600?random=2" alt="Networking"></div>
-                <div class="gallery-item reveal"><img src="https://picsum.photos/500/500?random=3" alt="Workshop"></div>
-                <div class="gallery-item reveal"><img src="https://picsum.photos/400/300?random=4" alt="Speaker presentation"></div>
-                <div class="gallery-item reveal"><img src="https://picsum.photos/600/600?random=5" alt="Audience"></div>
-                <div class="gallery-item reveal"><img src="https://picsum.photos/500/350?random=6" alt="Tech discussion"></div>
+                <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?q=80&w=800" alt="FutureMobile Innovation Hall"></div>
+                <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=800" alt="Mobile App UI Design"></div>
+                <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=800" alt="Developer Collaboration Workshop"></div>
+                <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800" alt="Software Engineering Session"></div>
+                <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1558403194-611308249627?q=80&w=800" alt="Keynote Tech Presentation"></div>
+                <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800" alt="Mobile Tech Networking"></div>
             </div>
         </div>
     </section>
@@ -488,10 +488,13 @@
                         <label for="attendance">Attendance Confirmation</label>
                         <select id="attendance" required>
                             <option value="" disabled selected>Select option...</option>
-                            <option value="in-person">I will attend in person</option>
-                            <option value="online">I will attend online</option>
-                            <option value="maybe">I am not sure yet</option>
+                            <option value="attending">Yes, I'm Attending</option>
+                            <option value="not-attending">Sorry, Not Attending</option>
                         </select>
+                    </div>
+                    <div class="form-group mt-3" id="reasonGroup" style="display: none;">
+                        <label for="reason">Reason / Message / Gift</label>
+                        <textarea id="reason" placeholder="Please let us know your reason or leave a message..."></textarea>
                     </div>
                     <div class="form-message" id="formMessage"></div>
                     <button type="submit" class="btn btn-primary btn-submit">Submit Registration <i class="fas fa-paper-plane"></i></button>
