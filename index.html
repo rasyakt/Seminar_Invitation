@@ -19,6 +19,19 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Prevent Flash of Unstyled Content (FOUC) for Dark Mode -->
+    <script>
+        // Apply theme immediately before page renders
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
 </head>
 <body>
 
@@ -528,6 +541,12 @@
     <a href="#" class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
     </a>
+
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
+        <i class="fas fa-sun theme-toggle-icon sun"></i>
+        <i class="fas fa-moon theme-toggle-icon moon"></i>
+    </button>
 
     <!-- Custom JavaScript -->
     <script src="script.js"></script>

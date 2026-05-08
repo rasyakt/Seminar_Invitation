@@ -1,6 +1,57 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     /* ==========================================================================
+       Dark Mode Toggle - SMOOTH & PERFORMANT
+       ========================================================================== */
+    const themeToggle = document.getElementById('themeToggle');
+    const htmlElement = document.documentElement;
+    
+    // Check for saved theme preference, system preference, or default to 'light'
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const currentTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+    
+    // Apply theme immediately to prevent flash (FOUC - Flash of Unstyled Content)
+    if (currentTheme === 'dark') {
+        htmlElement.setAttribute('data-theme', 'dark');
+    }
+    
+    // Toggle theme function with smooth animation
+    const toggleTheme = () => {
+        const currentTheme = htmlElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        // Apply new theme with transition
+        htmlElement.style.transition = 'none';
+        htmlElement.setAttribute('data-theme', newTheme);
+        
+        // Force reflow
+        void htmlElement.offsetHeight;
+        
+        // Re-enable transitions
+        htmlElement.style.transition = '';
+        
+        // Save preference
+        localStorage.setItem('theme', newTheme);
+        
+        // Add button animation for feedback
+        themeToggle.style.transform = 'scale(0.85) rotate(180deg)';
+        setTimeout(() => {
+            themeToggle.style.transform = '';
+        }, 300);
+    };
+    
+    // Event listener
+    themeToggle.addEventListener('click', toggleTheme);
+    
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) {
+            htmlElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+        }
+    });
+    
+    /* ==========================================================================
        Loading Screen
        ========================================================================== */
     const loader = document.getElementById('loader');
